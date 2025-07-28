@@ -4,23 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:spacing="16dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_title"
             android:textSize="32sp"
             android:textStyle="bold" />
+
+        <!-- 自启设置区域 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/settings_item_bg"
             android:padding="16dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -28,28 +33,120 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingVertical="8dp">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/enable_auto_start" />
+
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/autoStartSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingVertical="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="保活服务状态" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/serviceSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
+
+        <!-- 监控间隔设置 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/settings_item_bg"
             android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="监控间隔设置"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <Spinner
+                android:id="@+id/intervalSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/monitor_intervals"
+                android:prompt="@string/select_interval" />
+        </LinearLayout>
+
+        <!-- 选择保活应用 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/settings_item_bg"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择需要保活的应用"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/appRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+        </LinearLayout>
+
+        <!-- 白名单设置 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/settings_item_bg"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="应用白名单"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/whiteListRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+        </LinearLayout>
+
+        <!-- 权限管理区域 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/settings_item_bg"
+            android:padding="16dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,6 +154,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
+
             <LinearLayout
                 android:id="@+id/overlayPermissionLayout"
                 android:layout_width="match_parent"
@@ -66,17 +164,20 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:background="?attr/selectableItemBackground">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/overlay_permission" />
+
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/overlayPermissionSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="false" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/notificationPermissionLayout"
                 android:layout_width="match_parent"
@@ -86,13 +187,38 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:background="?attr/selectableItemBackground">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/notification_permission" />
+
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/notificationPermissionSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/usageStatsPermissionLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingVertical="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="应用使用情况权限" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/usageStatsPermissionSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="false" />

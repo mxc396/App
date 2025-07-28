@@ -2,11 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- 添加开机自启所需权限 -->
+    <!-- 原有权限 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <!-- Android 13及以上需要的通知权限 -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- 新增权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackages" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
 
     <application
         android:allowBackup="true"
@@ -31,6 +39,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+
+        <!-- 注册保活服务 -->
+        <service
+            android:name=".service.KeepAliveService"
+            android:foregroundServiceType="dataSync"
+            android:exported="false" />
 
         <activity
             android:name=".MainActivity"
