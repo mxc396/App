@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AppTest</string>
+    <!-- 标题 -->
+    <string name="app_title">App</string>
+
+    <!-- 自启设置区域 -->
+    <string name="auto_start_setting">开机自启设置</string>
+    <string name="enable_auto_start">开启开机自启</string>
+
+    <!-- 权限管理区域 -->
+    <string name="permission_management">权限管理</string>
+    <string name="overlay_permission">悬浮窗权限</string>
+    <string name="notification_permission">通知权限</string>
+    <string name="reserved_permission1">预留权限1</string>
+
+</resources>
